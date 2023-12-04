@@ -4,14 +4,14 @@ export { default } from "next-auth/middleware"
 export async function middleware(request:NextRequest) {
     const token = await request.cookies.get('next-auth.session-token')?.value;
 
-    console.log("--MIDDLEWARE--");
-    console.log("--TOKEN-->", token);
+    console.log("-- MIDDLEWARE--");
+    console.log("-- TOKEN --", token);
 
     if (token) {
-        console.log("--WITH TOKEN--");
+        console.log("-- WITH TOKEN --");
         return new NextResponse(JSON.stringify({ message: "Usuário já autenticado, não é possível se regitrar" }));
     }
-    console.log("--WITHout TOKEN--");
+    console.log("-- WITHOUT TOKEN --");
     return NextResponse.next();
 }
 

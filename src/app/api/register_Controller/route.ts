@@ -1,8 +1,22 @@
-'use server'
+import { createUser } from '../../../../services/register.service';
 import {NextResponse} from "next/server";
+import {User} from '../../../../services/register.service'
 
-export async function GET(request: Request){
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-    const data = await res.json();
-    return NextResponse.json({data})
+export async function POST(req: Request, res: Response) {
+    try {
+        const user:User = await req.json();
+        console.log('POST->',user);
+        await createUser(user);
+
+        return NextResponse.json({
+            "Usuário cadastrado com sucesso":{
+                email:user.email,
+                name: user.name
+            }
+        })
+    } catch (error) {
+        console.error('Erro:', error);
+        return NextResponse.json(error)
+
+    }
 }

@@ -5,13 +5,24 @@ import {redirect} from "next/navigation";
 
 export default function Register(){
     const [email, setEmail] = useState<string>('');
-    const [username, setUsername] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [name, setName] = useState<string>('');
+    const [senha, setSenha] = useState<string>('');
+
     const { data: session} = useSession();
 
-    const handleRegister = () => {
-        const res = fetch('http://localhost:3000/api/register_api')
-    };
+    async function handleRegister(email:string, name:string, senha:string){
+        const res = await fetch('http://localhost:3000/api/register_Controller',{
+            method: 'POST',
+            headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify({
+                email:email,
+                name:name,
+                senha:senha
+            })
+        })
+        const data = await res.json();
+        console.log('Data ->', data)
+    }
 
     if(session){
         return redirect('/account')
@@ -30,29 +41,29 @@ export default function Register(){
                         className="p-2 mb-4 border rounded"
                     />
 
-                    <label htmlFor="username" className="mb-2">Nome de usuário</label>
+                    <label htmlFor="name" className="mb-2">Nome de usuário</label>
                     <input
                         type="text"
-                        id="username"
+                        id="name"
                         placeholder="Digite um apelido..."
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         className="p-2 mb-4 border rounded"
                     />
 
-                    <label htmlFor="password" className="mb-2">Senha</label>
+                    <label htmlFor="senha" className="mb-2">Senha</label>
                     <input
-                        type="password"
-                        id="password"
+                        type="senha"
+                        id="senha"
                         placeholder="Digite uma senha..."
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
                         className="p-2 mb-4 border rounded"
                     />
 
                     <button
                         type="submit"
-                        onClick={handleRegister}
+                        onClick={()=> handleRegister}
                         className="bg-green-500 text-white p-2 rounded cursor-pointer"
                     >
                         Registrar-se
