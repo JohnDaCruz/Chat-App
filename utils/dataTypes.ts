@@ -6,3 +6,4 @@ export type User = {
     message: Array<string>
 }
 export type User_id_message = Omit<User, 'id' | 'message'>;
+export type User_id_message_name = Omit<User, 'id' | 'message' | 'name'>;

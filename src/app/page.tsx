@@ -4,41 +4,33 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import React, {useState} from "react";
 
-import {User} from "../../services/login.service";
+//import {User} from "../../services/login.service";
+import {User_id_message, User_id_message_name} from "../../utils/dataTypes";
 
 export default function Home() {
     const [email, setEmail] = useState<string>('');
-    const [password, setpassword] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
-    const user = {email, password}
+    const user:User_id_message_name = {
+        email,
+        password
+    }
 
     const { data: session } = useSession();
-
-    async function handlerSignOut (e:React.MouseEvent<HTMLButtonElement>){
-        e.preventDefault();
-        try{
-            const res = await fetch('http://localhost:3000/api/register_Controller',{
-                method: 'POST',
-                headers:{'Content-Type': 'application/json'},
-                body:JSON.stringify({user})
+    async function handleLogin(user:User_id_message_name){
+        fetch("http://localhost:3000/api/login_Controller",{
+            method:'POST',
+            headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify(user)
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                console.log('RETORNO NA LOGIN PAGE --> ',data);
             })
-            const data = await res.json();
-            console.log('Data ->', data)
-
-            redirect('/account')
-
-        }catch (e) {
-            console.log("Erro ao logar --> ", e)
-        }
-
+            .catch((error) => console.log( error ));
     }
 
-    if (session) {
-        return (
-            redirect('/account')
-        )
-    }
-    else {
+    if(!session){
         return (
             <div className="container mx-auto p-4">
                 <h1 className="text-3xl font-bold mb-4">Welcome</h1>
@@ -60,11 +52,11 @@ export default function Home() {
                         name="password"
                         placeholder="Digite uma password.."
                         value={password}
-                        onChange={(e) => setpassword(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)}
                         className="mt-1 p-2 w-full border rounded-md"
                     />
                     <button
-                        onClick={(e)=> handlerSignOut}
+                        onClick={(e)=> handleLogin(user)}
                         type="submit"
                         className="bg-blue-500 text-white px-2 py-2 mb-2 rounded-md mx-auto block w-3/4 sm:w-1/2 hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
                     >
@@ -81,6 +73,7 @@ export default function Home() {
                 </button>
             </div>
         );
-
+    }else{
+        redirect('/account')
     }
 }

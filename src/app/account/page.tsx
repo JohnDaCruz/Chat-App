@@ -4,22 +4,20 @@ import {redirect} from "next/navigation";
 import {authOptions} from "../../../utils/authOption";
 
 export default function Account(){
-   // const {data:session} = await useSession();
+   const {data:session} =  useSession();
 
     const handlerSignOut = () =>{
-        //console.log(cookieCutter.set('next-auth.session-token', undefined, { expires: new Date(0) }));
-        //console.log(cookieCutter.set('next-auth.csrf-token', undefined, { expires: new Date(0) }));
-
         signOut();
     }
 
+    if(session){
         return(
-            <>
-                <p>
-                    {/*welcome,{session?.user?.email}*/}
-                </p>
+            <div>
+                <h3>Welcome, {session.user?.email}</h3>
                 <button type={"button"} onClick={()=> handlerSignOut()}> lOGOUT </button>
-            </>
+            </div>
         )
-
+    }else{
+        redirect('/')
+    }
 }

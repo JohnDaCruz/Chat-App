@@ -1,9 +1,12 @@
 import {loginUser} from "../../../../services/login.service";
 import {NextResponse} from "next/server";
+
 import {User} from "../../../../utils/dataTypes";
+import {User_id_message_name} from "../../../../utils/dataTypes";
 
 export async function POST(req: Request, res: Response) {
-    const user:User = await req.json();
+
+    const user:User_id_message_name = await req.json();
     console.log("LOGIN CONTROLLER -> ", user)
     try {
         const loginUserCheck = await loginUser(user);
