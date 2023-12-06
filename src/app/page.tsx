@@ -2,7 +2,7 @@
 import GoogleButton from 'react-google-button'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { redirect } from 'next/navigation'
-import React, {useState} from "react";
+import React, {SyntheticEvent, useState} from "react";
 
 //import {User} from "../../services/login.service";
 import {User_id_message, User_id_message_name} from "../../utils/dataTypes";
@@ -29,12 +29,26 @@ export default function Home() {
             })
             .catch((error) => console.log( error ));
     }
+    async function handleSubmit(e:SyntheticEvent) {
+        e.preventDefault()
+        const result = await signIn('credentials', {
+            email,
+            password,
+            redirect: false
+        })
+
+        if (result?.error) {
+            console.log(result)
+            return
+        }
+        redirect('/')
+    }
 
     if(!session){
         return (
             <div className="container mx-auto p-4">
                 <h1 className="text-3xl font-bold mb-4">Welcome</h1>
-                <form className="flex flex-col" >
+                <form className="flex flex-col" onSubmit={handleSubmit} >
                     <label htmlFor="email" className="block text-sm font-medium text-gray-600">Email</label>
                     <input
                         type="email"
@@ -56,7 +70,6 @@ export default function Home() {
                         className="mt-1 p-2 w-full border rounded-md"
                     />
                     <button
-                        onClick={(e)=> handleLogin(user)}
                         type="submit"
                         className="bg-blue-500 text-white px-2 py-2 mb-2 rounded-md mx-auto block w-3/4 sm:w-1/2 hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
                     >
