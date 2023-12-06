@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import {User, User_id_message_name} from "../utils/dataTypes";
 
 export async function loginUser(user:User_id_message_name){
-    const {email,password}:User_id_message_name = user
+    const {email}:User_id_message_name = user
     try{
         const userLogin = await db.user.findUnique({
             where:{
