@@ -1,33 +1,39 @@
-import {db} from "../utils/db.server";
-import bcrypt from 'bcrypt'
+import { db } from "../utils/db.server";
 
-export type User = {
-    id:number,
-    email:string,
-    name:string,
-    senha:string
-    message: Array<string>
-}
-export async function createUser(user:User){
-    const {name,email,senha} = user
-    const check_user_exist = await db.user.findUnique({
-        where:{email},
-        select:{name:true}
-    })
+import {User} from "../utils/dataTypes";
+import {User_id_message} from "../utils/dataTypes";
 
-    if(!check_user_exist){
-        return db.user.create({
-            data:{
-                email,
-                name,
-                senha
-            },
-            select:{
-                name:true,
-                email:true
-            }
-        })
-    }else{
-        return 'Usuário já existe';
+export async function createUser(user: User_id_message) {
+    const { name, email, password }:User_id_message = user;
+    console.log("SERVICE REGISTER CHECK -> ", user)
+
+    // Verifica se o usuário já existe
+    const usuarioExistente = await db.user.findUnique({
+        where: {
+            email:user.email // Corrigido para definir o campo de e-mail
+        },
+        select: {
+            email: true,
+        },
+    });
+
+    if (usuarioExistente) {
+        console.log("Usuário já existe!!")
+        return null;
     }
+
+    // Cria um novo usuário
+    const novoUsuario = await db.user.create({
+        data: {
+            email,
+            name,
+            password, // Salva a senha diretamente (sem hash)
+        },
+        select: {
+            name: true,
+            email: true,
+        },
+    });
+
+    return novoUsuario;
 }

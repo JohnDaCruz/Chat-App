@@ -1,11 +1,11 @@
 'use client'
 import { useSession, signOut } from 'next-auth/react'
 import {redirect} from "next/navigation";
-// @ts-ignore
-import cookieCutter from 'cookie-cutter';
+import {authOptions} from "../../../utils/authOption";
 
 export default function Account(){
-    const { data: session } = useSession();
+   // const {data:session} = await useSession();
+
     const handlerSignOut = () =>{
         //console.log(cookieCutter.set('next-auth.session-token', undefined, { expires: new Date(0) }));
         //console.log(cookieCutter.set('next-auth.csrf-token', undefined, { expires: new Date(0) }));
@@ -13,17 +13,13 @@ export default function Account(){
         signOut();
     }
 
-    if(session){
         return(
             <>
                 <p>
-                    Bem vindo, {session?.user?.email}
+                    {/*welcome,{session?.user?.email}*/}
                 </p>
                 <button type={"button"} onClick={()=> handlerSignOut()}> lOGOUT </button>
             </>
-        );
-    }else{
-        return redirect('/')
-    }
+        )
 
 }
