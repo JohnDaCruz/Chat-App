@@ -17,18 +17,6 @@ export default function Home() {
     }
 
     const { data: session } = useSession();
-    async function handleLogin(user:User_id_message_name){
-        fetch("http://localhost:3000/api/login_Controller",{
-            method:'POST',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(user)
-        })
-            .then((resp) => resp.json())
-            .then((data) => {
-                console.log('RETORNO NA LOGIN PAGE --> ',data);
-            })
-            .catch((error) => console.log( error ));
-    }
     async function handleSubmit(e:SyntheticEvent) {
         e.preventDefault()
         const result = await signIn('credentials', {
@@ -41,7 +29,6 @@ export default function Home() {
             console.log(result)
             return
         }
-        redirect('/')
     }
 
     if(!session){

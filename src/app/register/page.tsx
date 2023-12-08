@@ -1,5 +1,5 @@
 'use client'
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, SyntheticEvent} from "react";
 import {useSession} from "next-auth/react";
 import {redirect} from "next/navigation";
 
@@ -18,7 +18,8 @@ export default function Register(){
 
     const { data: session} = useSession();
 
-    async function handleRegister(userRegister:User_id_message){
+    async function handleRegister(e:SyntheticEvent){
+        e.preventDefault()
         fetch("http://localhost:3000/api/register_Controller",{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
@@ -27,6 +28,7 @@ export default function Register(){
             .then((resp) => resp.json())
             .then((data) => {
                 console.log('RETORNO NA REGISTER PAGE --> ',data);
+                return redirect('/')
             })
             .catch((error) => console.log( error ));
     }
@@ -37,7 +39,7 @@ export default function Register(){
         return(
             <div className="container mx-auto p-4">
                 <h1 className="text-3xl font-bold mb-4">Registrar-se</h1>
-                <form className="flex flex-col">
+                <form className="flex flex-col" onSubmit={handleRegister}>
                     <label htmlFor="email" className="mb-2">Email</label>
                     <input
                         type="email"
@@ -70,7 +72,6 @@ export default function Register(){
 
                     <button
                         type="submit"
-                        onClick={(e) => handleRegister(userRegister)}
                         className="bg-green-500 text-white p-2 rounded cursor-pointer"
                     >
                         Registrar-se

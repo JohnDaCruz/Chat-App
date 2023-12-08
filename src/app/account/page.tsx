@@ -3,6 +3,7 @@ import { useSession, signOut } from 'next-auth/react'
 import {redirect} from "next/navigation";
 import {authOptions} from "../../../utils/authOption";
 
+
 export default function Account(){
    const {data:session} =  useSession();
 

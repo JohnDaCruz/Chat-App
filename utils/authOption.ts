@@ -2,8 +2,6 @@ import {NextAuthOptions} from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import {User_id_message_name} from "./dataTypes";
-
 export const authOptions: NextAuthOptions  = {
     providers: [
         GoogleProvider({
@@ -26,11 +24,7 @@ export const authOptions: NextAuthOptions  = {
                         password: credentials?.password
                     })
                 })
-
                 const user = await res.json();
-
-                console.log('CREDENTIALS AUTH -> ', user)
-
                 if (user) {
                     return user
                 } else {
@@ -39,7 +33,7 @@ export const authOptions: NextAuthOptions  = {
             }
         }),
     ],
-    secret: process.env.SECRET,
+    secret: process.env.NEXTAUTH_SECRET,
     pages:{
         signIn:'/'
     }

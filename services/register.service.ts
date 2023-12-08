@@ -7,10 +7,9 @@ export async function createUser(user: User_id_message) {
     const { name, email, password }:User_id_message = user;
     console.log("SERVICE REGISTER CHECK -> ", user)
 
-    // Verifica se o usuário já existe
     const usuarioExistente = await db.user.findUnique({
         where: {
-            email:user.email // Corrigido para definir o campo de e-mail
+            email:user.email
         },
         select: {
             email: true,
