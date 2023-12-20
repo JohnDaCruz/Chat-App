@@ -1,7 +1,7 @@
 import {db} from "../utils/db.server";
 import bcrypt from 'bcrypt'
 
-import {User, User_id_message_name} from "../utils/dataTypes";
+import {User, User_id_message_name} from "../utils/data.types";
 
 export async function loginUser(user:User_id_message_name){
     const {email}:User_id_message_name = user

@@ -1,5 +1,5 @@
 import {NextResponse} from "next/server";
-import {getUsers} from "../../../../services/getUsers.service";
+import {getUsers} from "../../../../../services/users.service";
 
 export async function GET(req: Request, res: Response) {
     try {

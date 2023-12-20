@@ -2,8 +2,9 @@
 import React, {useState, useEffect, SyntheticEvent} from "react";
 import {useSession} from "next-auth/react";
 import {redirect} from "next/navigation";
+import { z, ZodError } from 'zod';
 
-import {User, User_id_message} from "../../../utils/dataTypes";
+import {User, User_id_message} from "../../../utils/data.types";
 
 export default function Register(){
     const [email, setEmail] = useState<string>('');
@@ -20,7 +21,7 @@ export default function Register(){
 
     async function handleRegister(e:SyntheticEvent){
         e.preventDefault()
-        fetch("http://localhost:3000/api/register_Controller",{
+        fetch("http://localhost:3000/api/controller/register",{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify(userRegister)

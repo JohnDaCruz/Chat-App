@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import React, {SyntheticEvent, useState} from "react";
 
 //import {User} from "../../services/login.service";
-import {User_id_message, User_id_message_name} from "../../utils/dataTypes";
+import {User_id_message, User_id_message_name} from "../../utils/data.types";
 
 export default function Home() {
     const [email, setEmail] = useState<string>('');

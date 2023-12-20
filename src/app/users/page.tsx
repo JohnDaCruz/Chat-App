@@ -1,12 +1,12 @@
 'use client'
 import { useSession, signOut } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
-import {User} from "../../../services/login.service";
+import {User} from "../../../utils/data.types";
 
 export default function Users() {
     const [listUser, setUserList] = useState<Array<User>>();
     useEffect(() => {
-        fetch("http://localhost:3000/api/get_Controller")
+        fetch("http://localhost:3000/api/controller/get")
             .then((resp) => resp.json())
             .then((data) => {
                 console.log(data);

@@ -1,8 +1,8 @@
-import { createUser } from '../../../../services/register.service';
+import { createUser } from '../../../../../services/register.service';
 import {NextResponse} from "next/server";
 
-import {User} from "../../../../utils/dataTypes";
-import {User_id_message} from "../../../../utils/dataTypes";
+import {User} from "../../../../../utils/data.types";
+import {User_id_message} from "../../../../../utils/data.types";
 
 export async function POST(req: Request, res: Response) {
     try {
