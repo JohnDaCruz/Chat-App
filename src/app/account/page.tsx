@@ -27,7 +27,7 @@ export default function Account(){
 
     useEffect(() => {
         socket.on("receive_message", (data) => {
-            console.log("--RECEIVE-- ", data)
+            console.log("--RECEIVE--> ", data)
             setMessageReceived(data.message);
         });
     }, [socket]);
