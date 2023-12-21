@@ -1,7 +1,7 @@
 import {NextResponse} from "next/server";
 
 import {User_id_message_name} from "../../../../../utils/data.types";
-import {loginUser} from "../../../../../services/login.service";
+import {loginUser} from "../../../../../services/loginService";
 
 export async function POST(req: Request, res: Response) {
 

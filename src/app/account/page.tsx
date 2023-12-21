@@ -4,10 +4,13 @@ import {redirect} from "next/navigation";
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 
-const socket = io("http://localhost:3001")
+const socket = io("https://server-socketio.onrender.com")
 
 export default function Account(){
-   const {data:session} =  useSession();
+
+    const messageArray:Array<string> = [];
+    const {data:session} =  useSession();
+
     //Room State
     const [room, setRoom] = useState("");
 
@@ -28,13 +31,24 @@ export default function Account(){
     useEffect(() => {
         socket.on("receive_message", (data) => {
             console.log("--RECEIVE--> ", data)
-            setMessageReceived(data.message);
+            const {message, room} = data
+           //
+           //  messageArray.push(message)
+           //
+           // for (let i = 0; i <= messageArray.length; i++ ){
+           //     messageArray.push(message)
+           // }
+           //
+           //  localStorage.setItem('messages', JSON.stringify(messageArray))
+
+            setMessageReceived(message);
         });
     }, [socket]);
 
-    const handlerSignOut = () =>{
+    const handlerSignOut = () => {
         signOut();
     }
+
     if(session){
         return(
             <div>

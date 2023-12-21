@@ -1,4 +1,4 @@
-import { createUser } from '../../../../../services/register.service';
+import { createUser } from '../../../../../services/registerService';
 import {NextResponse} from "next/server";
 
 import {User} from "../../../../../utils/data.types";
