@@ -21,7 +21,7 @@ export default function Register(){
 
     async function handleRegister(e:SyntheticEvent){
         e.preventDefault()
-        fetch("http://localhost:3000/api/controller/register",{
+        fetch("https://chat-app-nextjs93105.netlify.app/api/controller/register",{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify(userRegister)
