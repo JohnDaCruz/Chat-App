@@ -1,14 +1,13 @@
 'use client'
 import { useSession, signOut } from 'next-auth/react'
 import {redirect} from "next/navigation";
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 import { useEffect, useState } from "react";
 
 const socket = io("https://server-socketio.onrender.com")
 
 export default function Account(){
 
-    const messageArray:Array<string> = [];
     const {data:session} =  useSession();
 
     //Room State
@@ -31,19 +30,10 @@ export default function Account(){
     useEffect(() => {
         socket.on("receive_message", (data) => {
             console.log("--RECEIVE--> ", data)
-            const {message, room} = data
-           //
-           //  messageArray.push(message)
-           //
-           // for (let i = 0; i <= messageArray.length; i++ ){
-           //     messageArray.push(message)
-           // }
-           //
-           //  localStorage.setItem('messages', JSON.stringify(messageArray))
-
+            const {message} = data
             setMessageReceived(message);
         });
-    }, [socket]);
+    }, []);
 
     const handlerSignOut = () => {
         signOut();
