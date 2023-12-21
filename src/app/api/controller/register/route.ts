@@ -7,13 +7,7 @@ import {User_id_message} from "../../../../../utils/data.types";
 export async function POST(req: Request, res: Response) {
     try {
         const user:User_id_message = await req.json();
-
-        console.log('OBJETO RECEBIDO NA ROTA REGISTER -> ', user)
-
         const createUserCheck = await createUser(user);
-
-        console.log('OBJETO RETORNADO DE SERVICE REGISTER -> ', createUserCheck)
-
         if(createUserCheck){
             return NextResponse.json(createUserCheck,{status:201})
         }else {
