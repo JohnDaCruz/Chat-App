@@ -1,7 +1,7 @@
 'use client'
 import { useSession, signIn } from 'next-auth/react'
 import { redirect } from 'next/navigation'
-import React, {SyntheticEvent, useState} from "react";
+import React, {useState} from "react";
 
 //import {User} from "../../services/login.service";
 //import {User_id_message_name} from "../../utils/data.types";
@@ -16,8 +16,8 @@ export default function Home() {
     // }
 
     const { data: session } = useSession();
-    async function handleSubmit(e:SyntheticEvent) {
-        e.preventDefault()
+    async function handleSubmit() {
+        //e.preventDefault()
         const result = await signIn('credentials', {
             email,
             password,
