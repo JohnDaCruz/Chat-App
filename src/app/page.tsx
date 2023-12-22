@@ -1,34 +1,45 @@
 'use client'
-import { useSession, signIn } from 'next-auth/react'
+import {useSession, signIn} from 'next-auth/react'
 import React, {SyntheticEvent, useState, useEffect} from "react";
-import { useRouter } from 'next/navigation'
+import {useRouter} from 'next/navigation'
+import Loader from "@/app/components/Loader";
 
 export default function Home() {
+    const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const { data: session } = useSession();
+
+    const {data: session} = useSession();
     const router = useRouter();
 
-    async function handleSubmit(e:SyntheticEvent) {
+    async function handleSubmit(e: SyntheticEvent) {
         e.preventDefault()
+        setLoading(true);
         const result = await signIn('credentials', {
             email,
             password,
             redirect: false
         })
+
         if (result?.error) {
             console.log(result)
             return
         }
-
         router.push('/account')
     }
+
+    useEffect(() => {
+        if (session) {
+            router.push('/account');
+        }
+    }, [session, router]);
 
     if(!session){
         return (
             <div className="container mx-auto p-4">
+                {loading && <Loader/>}
                 <h1 className="text-3xl font-bold mb-4">Welcome</h1>
-                <form className="flex flex-col" onSubmit={handleSubmit} >
+                <form className="flex flex-col" onSubmit={handleSubmit}>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-600">Email</label>
                     <input
                         type="email"
@@ -37,6 +48,7 @@ export default function Home() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="mt-1 p-2 w-full border rounded-md"
+                        disabled={loading}
                     />
 
                     <label htmlFor="password" className="block text-sm font-medium text-gray-600">password</label>
@@ -48,8 +60,12 @@ export default function Home() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="mt-1 p-2 w-full border rounded-md"
+                        disabled={loading}
+
                     />
                     <button
+                        disabled={loading}
+
                         type="submit"
                         className="bg-blue-500 text-white px-2 py-2 mb-2 rounded-md mx-auto block w-3/4 sm:w-1/2 hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
                     >
@@ -59,7 +75,8 @@ export default function Home() {
                 </form>
 
                 <button
-                    onClick={() => signIn('google') }
+                    disabled={loading}
+                    onClick={() => signIn('google')}
                     className="bg-blue-500 text-white px-2 py-2 mb-2 rounded-md mx-auto block w-3/4 sm:w-1/2 hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
                 >
                     GOOGLE WITH GOOGLE
@@ -67,4 +84,5 @@ export default function Home() {
             </div>
         );
     }
+    router.push('/account')
 }
