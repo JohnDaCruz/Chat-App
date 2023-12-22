@@ -36,10 +36,11 @@ export default function Account(){
         if (!session) {
             router.push('/');
         }
-    }, [session, router]);
+    }, [session]);
 
     const handlerSignOut = () => {
-        signOut();
+        signOut()
+        router.push('/')
     }
 
     if(session){

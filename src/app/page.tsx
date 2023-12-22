@@ -21,6 +21,7 @@ export default function Home() {
             console.log(result)
             return
         }
+
         router.push('/account')
     }
 
@@ -28,7 +29,7 @@ export default function Home() {
         if (session) {
             router.push('/account');
         }
-    }, [session, router]);
+    }, [session])
 
     if(!session){
         return (
