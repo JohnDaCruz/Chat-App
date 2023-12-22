@@ -24,12 +24,6 @@ export default function Home() {
         router.push('/account')
     }
 
-    useEffect(() => {
-        if (session) {
-            router.push('/account');
-        }
-    }, [session])
-
     if(!session){
         return (
             <div className="container mx-auto p-4">

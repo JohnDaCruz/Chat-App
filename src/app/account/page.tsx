@@ -32,9 +32,6 @@ export default function Account(){
             const {message} = data
             setMessageReceived(message);
         });
-        if (!session) {
-            router.push('/');
-        }
     }, [session]);
 
     const handlerSignOut = () => {
