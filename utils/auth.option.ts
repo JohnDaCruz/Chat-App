@@ -1,6 +1,7 @@
 import {NextAuthOptions} from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+const URL_SITE = process.env.URL_SITE
 
 export const authOptions: NextAuthOptions  = {
     providers: [
@@ -16,7 +17,7 @@ export const authOptions: NextAuthOptions  = {
             },
             async authorize(credentials, req) {
                 console.log('CREDENTIALS -> ', credentials)
-                const res = await fetch('https://chat-app-nextjs.onrender.com/api/controller/login', {
+                const res = await fetch(`${URL_SITE}/api/controller/login`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({

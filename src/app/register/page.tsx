@@ -1,8 +1,7 @@
 'use client'
-import React, {useState, useEffect, SyntheticEvent} from "react";
+import React, {useState, SyntheticEvent} from "react";
 import {useSession} from "next-auth/react";
 import {redirect} from "next/navigation";
-import { z, ZodError } from 'zod';
 
 import {User, User_id_message} from "../../../utils/data.types";
 
@@ -10,6 +9,7 @@ export default function Register(){
     const [email, setEmail] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const URL_SITE = process.env.URL_SITE
 
    let userRegister = {
        email: email,
@@ -21,7 +21,7 @@ export default function Register(){
 
     async function handleRegister(e:SyntheticEvent){
         e.preventDefault()
-        fetch("https://chat-app-nextjs.onrender.com/api/controller/register",{
+        fetch(`${URL_SITE}/api/controller/register`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify(userRegister)
