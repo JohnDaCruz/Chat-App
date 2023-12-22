@@ -14,7 +14,6 @@ export default function Home() {
     //     email,
     //     password
     // }
-
     const { data: session } = useSession();
     async function handleSubmit() {
         //e.preventDefault()
