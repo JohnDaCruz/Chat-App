@@ -69,7 +69,7 @@ export default function Home() {
                     onClick={() => signIn('google') }
                     className="bg-blue-500 text-white px-2 py-2 mb-2 rounded-md mx-auto block w-3/4 sm:w-1/2 hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
                 >
-                    SIGN-IN WITH GOOGLE
+                    GOOGLE
                 </button>
             </div>
         );
