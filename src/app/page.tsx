@@ -16,7 +16,6 @@ export default function Home() {
             password,
             redirect: false
         })
-
         if (result?.error) {
             console.log(result)
             return

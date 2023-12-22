@@ -2,7 +2,6 @@ import {NextAuthOptions} from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 const URL_SITE = process.env.URL_SITE
-
 export const authOptions: NextAuthOptions  = {
     providers: [
         GoogleProvider({

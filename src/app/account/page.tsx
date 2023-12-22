@@ -9,7 +9,6 @@ const socket = io("https://server-socketio.onrender.com")
 export default function Account(){
     const {data:session} =  useSession();
     const router = useRouter();
-
     //Room State
     const [room, setRoom] = useState("");
 
