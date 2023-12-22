@@ -1,20 +1,19 @@
 'use client'
-import GoogleButton from 'react-google-button'
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signIn } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import React, {SyntheticEvent, useState} from "react";
 
 //import {User} from "../../services/login.service";
-import {User_id_message, User_id_message_name} from "../../utils/data.types";
+//import {User_id_message_name} from "../../utils/data.types";
 
-export default async function Home() {
+export default function Home() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
-    const user:User_id_message_name = {
-        email,
-        password
-    }
+    // const user:User_id_message_name = {
+    //     email,
+    //     password
+    // }
 
     const { data: session } = useSession();
     async function handleSubmit(e:SyntheticEvent) {

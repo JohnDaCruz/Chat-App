@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const socket = io("https://server-socketio.onrender.com")
 
-export default async function Account(){
+export default function Account(){
     const {data:session} =  useSession();
 
     //Room State
