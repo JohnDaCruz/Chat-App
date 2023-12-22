@@ -1,6 +1,6 @@
 'use client'
 import { useSession, signOut } from 'next-auth/react'
-import {redirect} from "next/navigation";
+import {useRouter} from "next/navigation";
 import io from "socket.io-client";
 import { useEffect, useState } from "react";
 
@@ -8,6 +8,7 @@ const socket = io("https://server-socketio.onrender.com")
 
 export default function Account(){
     const {data:session} =  useSession();
+    const router = useRouter();
 
     //Room State
     const [room, setRoom] = useState("");
@@ -32,7 +33,10 @@ export default function Account(){
             const {message} = data
             setMessageReceived(message);
         });
-    }, []);
+        if (!session) {
+            router.push('/');
+        }
+    }, [session, router]);
 
     const handlerSignOut = () => {
         signOut();
@@ -79,7 +83,5 @@ export default function Account(){
                 <p className="mt-2">{messageReceived}</p>
             </div>
         )
-    } else {
-        redirect('/')
     }
 }
