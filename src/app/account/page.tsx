@@ -41,6 +41,7 @@ export default function Account(){
     const handlerSignOut = () => {
         signOut()
         router.push('/')
+
     }
 
     if(session){
