@@ -1,21 +1,14 @@
 'use client'
 import { useSession, signIn } from 'next-auth/react'
-import { redirect } from 'next/navigation'
-import React, {SyntheticEvent, useState} from "react";
-
-//import {User} from "../../services/login.service";
-//import {User_id_message_name} from "../../utils/data.types";
+import React, {SyntheticEvent, useState, useEffect} from "react";
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-
-    // const user:User_id_message_name = {
-    //     email,
-    //     password
-    // }
-
     const { data: session } = useSession();
+    const router = useRouter();
+
     async function handleSubmit(e:SyntheticEvent) {
         e.preventDefault()
         const result = await signIn('credentials', {
@@ -28,7 +21,14 @@ export default function Home() {
             console.log(result)
             return
         }
+        router.push('/account')
     }
+
+    useEffect(() => {
+        if (session) {
+            router.push('/account');
+        }
+    }, [session, router]);
 
     if(!session){
         return (
@@ -72,7 +72,5 @@ export default function Home() {
                 </button>
             </div>
         );
-    }else{
-        redirect('/account')
     }
 }
