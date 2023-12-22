@@ -1,7 +1,7 @@
 'use client'
 import { useSession, signIn } from 'next-auth/react'
 import React, {SyntheticEvent, useState, useEffect} from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
     const [email, setEmail] = useState<string>('');
