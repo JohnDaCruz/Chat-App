@@ -34,6 +34,25 @@ export const authOptions: NextAuthOptions  = {
             }
         }),
     ],
+    callbacks:{
+        async jwt({token,user}){
+            if(user){
+                token.name = user.name;
+                token.email = user.email;
+            }
+            console.log("ESSE É O TOKEN -> ", token)
+            return token
+        },
+        async session({session,token}){
+            if (token) {
+                session.user = session.user ?? {}; // Cria um objeto vazio se `user` for null ou undefined
+                session.user.email = token.email;
+                session.user.name = token.name;
+            }
+            console.log("ESSA É O SESSION -> ", session);
+            return session;
+        }
+    },
     secret: process.env.NEXTAUTH_SECRET,
     pages:{
         signIn:'/'
