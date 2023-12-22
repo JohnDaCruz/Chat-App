@@ -7,7 +7,7 @@ import React, {SyntheticEvent, useState} from "react";
 //import {User} from "../../services/login.service";
 import {User_id_message, User_id_message_name} from "../../utils/data.types";
 
-export default function Home() {
+export default async function Home() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
@@ -69,7 +69,7 @@ export default function Home() {
                     onClick={() => signIn('google') }
                     className="bg-blue-500 text-white px-2 py-2 mb-2 rounded-md mx-auto block w-3/4 sm:w-1/2 hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
                 >
-                    GOOGLE
+                    GOOGLE WITH GOOGLE
                 </button>
             </div>
         );
