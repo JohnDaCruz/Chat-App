@@ -7,22 +7,22 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id       Int        @id @default(autoincrement())
+  email    String     @unique
+  name     String?
   password String
-  message Messages[]
+  message  Messages[]
 }
 
-model Messages{
-  id Int @id @default(autoincrement())
-  user User @relation(fields: [userID], references: [id], onDelete: Cascade)
-  text String
+model Messages {
+  id     Int      @id @default(autoincrement())
+  user   User     @relation(fields: [userID], references: [id], onDelete: Cascade)
+  text   String
   userID Int
-  date DateTime @db.Time()
+  date   DateTime @db.Time()
 }
