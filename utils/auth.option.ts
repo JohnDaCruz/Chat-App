@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions  = {
             },
             async authorize(credentials, req) {
                 console.log('CREDENTIALS -> ', credentials)
-                const res = await fetch('https://chat-app-nextjs93105.netlify.app/api/controller/login', {
+                const res = await fetch('https://chat-app-nextjs.onrender.com/api/controller/login', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
