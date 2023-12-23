@@ -35,9 +35,7 @@ export default function Account(){
     }, [session]);
 
     const handlerSignOut = () => {
-        signOut()
-        router.push('/')
-
+        signOut().then(r => router.push('/'))
     }
 
     if(session){
