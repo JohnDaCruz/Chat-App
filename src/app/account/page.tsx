@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 import Loader from "@/app/components/Loader";
 
 
-const socket = io("https://server-socketio.onrender.com")
 
 export default function Account(){
     const {data:session} =  useSession();
@@ -17,6 +16,7 @@ export default function Account(){
     const [message, setMessage] = useState("");
     const [messageReceived, setMessageReceived] = useState("");
 
+    const socket = io("https://server-socketio.onrender.com")
 
     const joinRoom = () => {
         if (room !== "") {

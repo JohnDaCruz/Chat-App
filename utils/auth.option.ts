@@ -40,7 +40,6 @@ export const authOptions: NextAuthOptions  = {
                 token.name = user.name;
                 token.email = user.email;
             }
-            console.log("ESSE É O TOKEN -> ", token)
             return token
         },
         async session({session,token}){
@@ -49,7 +48,6 @@ export const authOptions: NextAuthOptions  = {
                 session.user.email = token.email;
                 session.user.name = token.name;
             }
-            console.log("ESSA É O SESSION -> ", session);
             return session;
         }
     },
