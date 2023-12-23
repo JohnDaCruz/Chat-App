@@ -34,7 +34,7 @@ export default function Account(){
             const {message} = data
             setMessageReceived(message);
         });
-    }, [session]);
+    }, [session,socket]);
 
     const handlerSignOut = () => {
         setLoading(true);
