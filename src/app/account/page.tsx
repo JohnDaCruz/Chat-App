@@ -2,19 +2,21 @@
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import io from "socket.io-client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Loader from "@/app/components/Loader";
+
 
 const socket = io("https://server-socketio.onrender.com")
 
 export default function Account(){
     const {data:session} =  useSession();
     const router = useRouter();
-    //Room State
-    const [room, setRoom] = useState("");
 
-    // Messages States
+    const [loading, setLoading] = useState(false);
+    const [room, setRoom] = useState("");
     const [message, setMessage] = useState("");
     const [messageReceived, setMessageReceived] = useState("");
+
 
     const joinRoom = () => {
         if (room !== "") {
@@ -35,12 +37,14 @@ export default function Account(){
     }, [session]);
 
     const handlerSignOut = () => {
+        setLoading(true);
         signOut().then(r => router.push('/'))
     }
 
     if(session){
         return(
             <div>
+                {loading && <Loader/>}
                 <h3>Welcome, {session.user?.email}</h3>
                 <button type={"button"} onClick={() => handlerSignOut()}> lOGOUT</button>
                 <div className="flex items-center space-x-4">
