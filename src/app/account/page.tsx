@@ -5,8 +5,6 @@ import io from "socket.io-client";
 import React, { useEffect, useState } from "react";
 import Loader from "@/app/components/Loader";
 
-
-
 export default function Account(){
     const {data:session} =  useSession();
     const router = useRouter();
