@@ -16,7 +16,7 @@ const headers = async () => {
     ];
 };
 const nextConfig = {
-    headers
+    headers,
 }
 
 module.exports = nextConfig
