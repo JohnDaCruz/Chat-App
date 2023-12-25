@@ -9,7 +9,7 @@ export default function Register(){
     const [email, setEmail] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const URL_SITE = process.env.URL_SITE
+    const URL_SITE = "http://localhost:3000" || process.env.URL_SITE
 
    let userRegister = {
        email: email,

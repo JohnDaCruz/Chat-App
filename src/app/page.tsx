@@ -83,7 +83,5 @@ export default function Home() {
                 </button>
             </div>
         );
-    }else{
-        router.push('/account')
     }
 }

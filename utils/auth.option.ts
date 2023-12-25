@@ -1,7 +1,7 @@
 import {NextAuthOptions} from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-const NEXTAUTH_URL = process.env.NEXTAUTH_URL
+const NEXTAUTH_URL = "http://localhost:3000" || process.env.NEXTAUTH_URL;
 
 export const authOptions: NextAuthOptions  = {
     providers: [
