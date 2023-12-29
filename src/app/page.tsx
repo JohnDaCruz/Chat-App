@@ -5,9 +5,11 @@ import {useRouter} from 'next/navigation'
 import Loader from "@/app/components/Loader";
 
 export default function Home() {
+    const [errorSignin, setErrorSignin] = useState(false);
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+
 
     const {data: session} = useSession();
     const router = useRouter();
@@ -20,12 +22,14 @@ export default function Home() {
             password,
             redirect: false
         })
-
-        if (result?.error) {
-            console.log(result)
-            return
+        console.log("--HANDLE SUBMIT-- ", result)
+        setErrorSignin(true);
+        if(result?.error == 'CredentialsSignin'){
+            setLoading(false)
+            setEmail('');
+            setPassword('');
+            return router.refresh();
         }
-        router.push('/account')
     }
 
     useEffect(() => {
@@ -47,6 +51,7 @@ export default function Home() {
                         placeholder="Digite seu email..."
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        autoComplete={"username"}
                         className="mt-1 p-2 w-full border rounded-md"
                         disabled={loading}
                     />
@@ -61,8 +66,9 @@ export default function Home() {
                         onChange={(e) => setPassword(e.target.value)}
                         className="mt-1 p-2 w-full border rounded-md"
                         disabled={loading}
-
                     />
+                    {errorSignin && <p className={"text-red-600 mb-2"}>Email e(ou) senha incorretos</p>}
+
                     <button
                         disabled={loading}
 

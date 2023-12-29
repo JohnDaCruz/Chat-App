@@ -12,7 +12,7 @@ export default function Account(){
     const [loading, setLoading] = useState(false);
     const [room, setRoom] = useState("");
     const [message, setMessage] = useState("");
-    const [messageReceived, setMessageReceived] = useState("");
+    const [messageReceived, setMessageReceived] = useState();
 
     const socket = io("https://server-socketio.onrender.com")
 
@@ -31,8 +31,9 @@ export default function Account(){
             console.log("--RECEIVE--> ", data)
             const {message} = data
             setMessageReceived(message);
+            console.log(messageReceived, typeof(messageReceived))
         });
-    }, [session,socket]);
+    }, [session,socket, messageReceived]);
 
     const handlerSignOut = () => {
         setLoading(true);
