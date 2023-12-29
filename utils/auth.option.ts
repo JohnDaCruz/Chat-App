@@ -1,6 +1,7 @@
 import {NextAuthOptions} from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+
 const NEXTAUTH_URL = process.env.NEXTAUTH_URL
 
 export const authOptions: NextAuthOptions  = {
@@ -12,8 +13,8 @@ export const authOptions: NextAuthOptions  = {
         CredentialsProvider({
             name: "credentials",
             credentials: {
-                email: { label: "email", type: "string" },
-                password: { label: "password",type:"string"}
+                email: { label: "email",type: "string" },
+                password: { label: "password",type: "string"}
             },
             async authorize(credentials) {
                 console.log('CREDENTIALS -> ', credentials)
@@ -26,10 +27,11 @@ export const authOptions: NextAuthOptions  = {
                     })
                 })
                 const user = await res.json();
+                console.log("--USER AUTH OPTIONS-- ", user)
                 if (user) {
-                    return user
+                    return user;
                 } else {
-                    return null
+                   return null;
                 }
             }
         }),
@@ -40,7 +42,6 @@ export const authOptions: NextAuthOptions  = {
                 token.name = user.name;
                 token.email = user.email;
             }
-            console.log("ESSE É O TOKEN -> ", token)
             return token
         },
         async session({session,token}){
@@ -49,7 +50,6 @@ export const authOptions: NextAuthOptions  = {
                 session.user.email = token.email;
                 session.user.name = token.name;
             }
-            console.log("ESSA É O SESSION -> ", session);
             return session;
         }
     },
