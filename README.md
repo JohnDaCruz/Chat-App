@@ -2,7 +2,7 @@
 
 Web app de chat desenvolvido com Next.js, React.js, TypeScript, Tailwind CSS e Socket.IO, incluindo autenticação segura via NextAuth. Essa solução oferece uma experiência dinâmica aos usuários, com comunicação em tempo real para interações mais ágeis.
 
-## Recursos
+## Características
 
 - **Segurança** 🔐
   >O NextAuth na aplicação facilita autenticação segura, login social e gestão de sessões, proporcionando uma experiência eficiente e protegida aos usuários.
