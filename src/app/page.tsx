@@ -37,7 +37,6 @@ export default function Home() {
             router.push('/account');
         }
     }, [session, router]);
-
     if(!session){
         return (
             <div className="flex items-center justify-center h-screen bg-[#404040]">
