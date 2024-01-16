@@ -13,3 +13,12 @@ export type sessionNextAuth = {
     name:string
     image:string
 }
+
+export type chatFriendPayload = {
+    name: string,
+    message:string
+}
+
+export type ChatProps = {
+    friendChatPayload: chatFriendPayload[];
+};
