@@ -15,7 +15,7 @@ export type sessionNextAuth = {
 }
 
 export type chatFriendPayload = {
-    name: string,
+    sender: string,
     message:string
 }
 
