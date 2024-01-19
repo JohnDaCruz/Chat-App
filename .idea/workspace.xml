@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31cffbb0-f5c3-4b27-b3cd-dfb47ab49eff" name="Changes" comment="Login flow fixed + animates">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="31cffbb0-f5c3-4b27-b3cd-dfb47ab49eff" name="Changes" comment="dataTypes&#10;chat more dynamic" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,6 +64,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dev\Documents\Web_Project\Chat-App-prod" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dev\Documents\Web_Project\Chat-App-prod\src\app" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -83,6 +84,7 @@
       <workItem from="1703466748957" duration="190000" />
       <workItem from="1703819318133" duration="305000" />
       <workItem from="1704760145180" duration="9000" />
+      <workItem from="1705699020144" duration="946000" />
     </task>
     <task id="LOCAL-00001" summary="middleware as checkauth">
       <option name="closed" value="true" />
@@ -268,7 +270,23 @@
       <option name="project" value="LOCAL" />
       <updated>1703819462607</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="dataTypes&#10;chat more dynamic">
+      <option name="closed" value="true" />
+      <created>1705699601029</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1705699601029</updated>
+    </task>
+    <task id="LOCAL-00025" summary="dataTypes&#10;chat more dynamic">
+      <option name="closed" value="true" />
+      <created>1705699661451</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1705699661451</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +308,7 @@
     <MESSAGE value="socket message functional" />
     <MESSAGE value="Readme update, localhost add for test" />
     <MESSAGE value="Login flow fixed + animates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login flow fixed + animates" />
+    <MESSAGE value="dataTypes&#10;chat more dynamic" />
+    <option name="LAST_COMMIT_MESSAGE" value="dataTypes&#10;chat more dynamic" />
   </component>
 </project>
