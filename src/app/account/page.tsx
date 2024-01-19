@@ -4,6 +4,13 @@ import { useRouter } from 'next/navigation'
 import io from "socket.io-client";
 import React, { useEffect, useState } from "react";
 import Loader from "@/app/components/Loader";
+import Chat from "@/app/components/Chat";
+
+import { LuSendHorizonal } from "react-icons/lu";
+import { MdMeetingRoom } from "react-icons/md";
+import { IconContext } from "react-icons";
+
+import {chatFriendPayload} from "../../../utils/data.types";
 
 export default function Account(){
     const {data:session} =  useSession();
@@ -13,8 +20,12 @@ export default function Account(){
     const [room, setRoom] = useState("");
     const [message, setMessage] = useState("");
     const [messageReceived, setMessageReceived] = useState();
+    const [messageForChat, setmessageForChat] = useState<chatFriendPayload[]>([])
 
     const socket = io("https://server-socketio.onrender.com")
+    const sessionUserName = session?.user?.email
+
+    const friendChatPayload:chatFriendPayload[] = []
 
     const joinRoom = () => {
         if (room !== "") {
@@ -23,64 +34,69 @@ export default function Account(){
     };
 
     const sendMessage = () => {
-        socket.emit("send_message", { message, room });
+        socket.emit("send_message", { room:room,message: message, sender:sessionUserName });
     };
 
     useEffect(() => {
         socket.on("receive_message", (data) => {
-            console.log("--RECEIVE--> ", data)
-            const {message} = data
-            setMessageReceived(message);
-            console.log(messageReceived, typeof(messageReceived))
+            setMessageReceived(data);
+            friendChatPayload.push(data)
+            setmessageForChat(friendChatPayload)
+            console.log(friendChatPayload)
         });
-    }, [session,socket, messageReceived]);
+    }, [session, socket, messageReceived]);
 
     const handlerSignOut = () => {
         setLoading(true);
         signOut().then(() => router.push('/'))
     }
 
+
     if(session){
         return(
-            <div>
-                {loading && <Loader/>}
-                <h3>Welcome, {session.user?.email}</h3>
-                <button type={"button"} onClick={() => handlerSignOut()}> lOGOUT</button>
-                <div className="flex items-center space-x-4">
-                    <input
-                        className="border p-2 rounded placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                        type="text"
-                        placeholder="Room Number..."
-                        onChange={(event) => {
-                            setRoom(event.target.value);
-                        }}
-                    />
-                    <button
-                        className="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none hover:bg-blue-600"
-                        onClick={joinRoom}
-                    >
-                        Join Room
-                    </button>
+            <IconContext.Provider value={{color:"white", size:'30'}}>
+                <div className="flex flex-col h-screen">
+
+                    <div className="flex flex-row bg-[#171717] justify-between p-2">
+                        <div className="flex">
+                            <input
+                                placeholder="Digite uma sala..."
+                                className="h-[30px] w-[150px] ml-5 p-2 resize-none overflow-auto
+                                scrollbar-hide rounded-2xl focus:outline-none
+                                focus:ring-2 focus:ring-[#3B6CB8]"
+                                onChange={(event) => {
+                                    setRoom(event.target.value);
+                                }}
+                            />
+                            <button onClick={joinRoom}>
+                                <MdMeetingRoom className="ml-2"/>
+                            </button>
+                        </div>
+                        {loading && <Loader/>}
+                        <button className="text-white font-extrabold" onClick={handlerSignOut}>
+                            Log out
+                        </button>
+                    </div>
+
+                    <Chat friendChatPayload={messageForChat}/>
+
+                    <form className="h-28 w-auto bg-[#171717] flex flex-row">
+                        <textarea
+                            placeholder="Digite uma mensagem..."
+                            className="h-[60px] w-[900px] ml-2 p-2 resize-none overflow-auto
+                            scrollbar-hide rounded-2xl focus:outline-none
+                            focus:ring-2 focus:ring-[#3B6CB8] self-center"
+                            onChange={(event) => {
+                                setMessage(event.target.value);
+                            }}
+                        />
+                        <button type="button" onClick={sendMessage} className="self-center">
+                            <LuSendHorizonal className="ml-2"/>
+                        </button>
+                    </form>
+
                 </div>
-                <div className="flex items-center space-x-4 mt-4">
-                    <input
-                        className="border p-2 rounded placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                        type="text"
-                        placeholder="Message..."
-                        onChange={(event) => {
-                            setMessage(event.target.value);
-                        }}
-                    />
-                    <button
-                        className="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none hover:bg-blue-600"
-                        onClick={sendMessage}
-                    >
-                        Send Message
-                    </button>
-                </div>
-                <h1 className="text-2xl font-bold mt-4">Message:</h1>
-                <p className="mt-2">{messageReceived}</p>
-            </div>
+            </IconContext.Provider>
         )
     }
 }
