@@ -51,7 +51,6 @@ export default function Account(){
         signOut().then(() => router.push('/'))
     }
 
-
     if(session){
         return(
             <IconContext.Provider value={{color:"white", size:'30'}}>
