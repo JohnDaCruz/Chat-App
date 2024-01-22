@@ -38,7 +38,7 @@ export default function Account(){
         return () => {
             socket.off("receive_message", handleReceiveMessage);
         };
-    }, [socket]);
+    }, [socket, messagesArray]);
 
     const joinRoom = () => {
         if (room !== "") {
