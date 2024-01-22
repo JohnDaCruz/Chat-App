@@ -28,7 +28,9 @@ export default function Account(){
 
 
     useEffect(() => {
-        const handleReceiveMessage = (data:chatFriendPayload) => {
+        const messagesArray: Array<chatFriendPayload> = [];
+
+        const handleReceiveMessage = (data: chatFriendPayload) => {
             messagesArray.push(data);
             setMessageForChat([...messagesArray]);
         };
@@ -38,8 +40,7 @@ export default function Account(){
         return () => {
             socket.off("receive_message", handleReceiveMessage);
         };
-    }, [socket, messagesArray]);
-
+    }, [socket]);
     const joinRoom = () => {
         if (room !== "") {
             socket.emit("join_room", room);

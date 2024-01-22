@@ -6,7 +6,7 @@ import {User_id_message} from "../utils/data.types";
 export async function createUser(user: User_id_message) {
     const { name, email, password }:User_id_message = user;
     console.log("SERVICE REGISTER CHECK -> ", user)
-    const usuarioExistente = await db.user.findUnique({
+    const findUser = await db.user.findUnique({
         where: {
             email:user.email
         },
@@ -15,12 +15,12 @@ export async function createUser(user: User_id_message) {
         },
     });
 
-    if (usuarioExistente) {
+    if (findUser) {
         console.log("Usuário já existe!!")
         return null;
     }
 
-    const novoUsuario = await db.user.create({
+    const newUser = await db.user.create({
         data: {
             email,
             name,
@@ -31,5 +31,5 @@ export async function createUser(user: User_id_message) {
             email: true,
         },
     });
-    return novoUsuario;
+    return newUser;
 }

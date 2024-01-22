@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="31cffbb0-f5c3-4b27-b3cd-dfb47ab49eff" name="Changes" comment="login page modified">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/registerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/services/registerService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/account/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/account/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/controller/register/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/controller/register/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +35,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -89,6 +98,9 @@
       <workItem from="1705699020144" duration="946000" />
       <workItem from="1705699993017" duration="2155000" />
       <workItem from="1705769073828" duration="595000" />
+      <workItem from="1705937206448" duration="1090000" />
+      <workItem from="1705940664503" duration="4537000" />
+      <workItem from="1705949561062" duration="3492000" />
     </task>
     <task id="LOCAL-00001" summary="middleware as checkauth">
       <option name="closed" value="true" />

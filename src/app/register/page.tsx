@@ -1,11 +1,10 @@
 'use client'
 import React, {useState, SyntheticEvent} from "react";
-import {signIn, useSession} from "next-auth/react";
+import {useSession} from "next-auth/react";
 import {redirect} from "next/navigation";
 
-import {User, User_id_message} from "../../../utils/data.types";
 import Loader from "@/app/components/Loader";
-import {router} from "next/client";
+import { useRouter } from 'next/navigation'
 
 export default function Register(){
     const [email, setEmail] = useState<string>('');
@@ -15,6 +14,8 @@ export default function Register(){
     const [successRegister, setSuccessRegister] = useState(false);
     const [loading, setLoading] = useState(false);
     const URL_SITE = process.env.URL_SITE
+
+    const router = useRouter();
 
     let userRegister = {
         email: email,
@@ -47,7 +48,7 @@ export default function Register(){
 
                 setErrorRegister(false);
                 setSuccessRegister(true);
-                return router.push('/')
+                router.push('/')
             })
             .catch((error) => {
                 setErrorRegister(true);
@@ -61,7 +62,7 @@ export default function Register(){
         return (
             <div className="flex items-center justify-center h-screen bg-[#404040]">
                 <div className="flex flex-col p-5 bg-[#242521] w-[500px] rounded-2xl">
-                    <form onSubmit={handleRegister}>
+                    <form onSubmit={handleRegister} method="POST">
                         {loading && <Loader/>}
                         <label htmlFor="email" className="block text-lg font-medium text-white">Email</label>
                         <input
