@@ -15,7 +15,7 @@ export default function Home() {
     const router = useRouter();
 
     async function handleSubmit(e: SyntheticEvent) {
-        e.preventDefault()
+        //e.preventDefault()
         setLoading(true);
         const result = await signIn('credentials', {
             email,

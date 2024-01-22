@@ -11,12 +11,11 @@ export async function POST(req: Request, res: Response) {
         if(createUserCheck){
             return NextResponse.json(createUserCheck,{status:201})
         }else {
-            return;
+            return NextResponse.json(null,{status:400});
         }
-
     } catch (error) {
         console.error('Erro:', error);
-        return NextResponse.json(error,{status:500})
+        return NextResponse.json(null,{status:500})
 
     }
 }

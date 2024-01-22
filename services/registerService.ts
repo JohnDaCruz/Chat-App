@@ -6,7 +6,6 @@ import {User_id_message} from "../utils/data.types";
 export async function createUser(user: User_id_message) {
     const { name, email, password }:User_id_message = user;
     console.log("SERVICE REGISTER CHECK -> ", user)
-
     const usuarioExistente = await db.user.findUnique({
         where: {
             email:user.email
@@ -21,18 +20,16 @@ export async function createUser(user: User_id_message) {
         return null;
     }
 
-    // Cria um novo usuário
     const novoUsuario = await db.user.create({
         data: {
             email,
             name,
-            password, // Salva a senha diretamente (sem hash)
+            password,
         },
         select: {
             name: true,
             email: true,
         },
     });
-
     return novoUsuario;
 }

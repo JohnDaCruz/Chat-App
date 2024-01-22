@@ -7,7 +7,7 @@ export default function Chat({friendChatPayload}:ChatProps) {
             {friendChatPayload.map((friend:chatFriendPayload, index:number) => (
                 <div className="p-2 bg-[#26426B] w-fit m-2 rounded-2xl" key={index}>
                     <h1 className="font-extrabold">{friend.sender}</h1>
-                    <div className="">{friend.message}</div>
+                    <div>{friend.message}</div>
                 </div>
             ))}
         </div>

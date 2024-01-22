@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31cffbb0-f5c3-4b27-b3cd-dfb47ab49eff" name="Changes" comment="dataTypes&#10;chat more dynamic" />
+    <list default="true" id="31cffbb0-f5c3-4b27-b3cd-dfb47ab49eff" name="Changes" comment="login page modified">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,6 +87,8 @@
       <workItem from="1703819318133" duration="305000" />
       <workItem from="1704760145180" duration="9000" />
       <workItem from="1705699020144" duration="946000" />
+      <workItem from="1705699993017" duration="2155000" />
+      <workItem from="1705769073828" duration="595000" />
     </task>
     <task id="LOCAL-00001" summary="middleware as checkauth">
       <option name="closed" value="true" />
@@ -286,7 +290,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705699661451</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="login page modified">
+      <option name="closed" value="true" />
+      <created>1705700096193</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1705700096193</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,6 +321,7 @@
     <MESSAGE value="Readme update, localhost add for test" />
     <MESSAGE value="Login flow fixed + animates" />
     <MESSAGE value="dataTypes&#10;chat more dynamic" />
-    <option name="LAST_COMMIT_MESSAGE" value="dataTypes&#10;chat more dynamic" />
+    <MESSAGE value="login page modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="login page modified" />
   </component>
 </project>
